@@ -4,7 +4,9 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'google_chart/axes'
 require 'google_chart/colors'
 require 'google_chart/data'
+require 'google_chart/grid_lines'
 require 'google_chart/sizes'
+require 'google_chart/titles'
 
 require 'google_chart/base'
 require 'google_chart/line'
