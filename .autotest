@@ -1,0 +1,25 @@
+ALL_TESTS = %r{\Atest/.*test}
+
+Autotest.add_hook :initialize do |at|
+  at.clear_mappings
+  
+  at.add_mapping %r{\Atest/test_helper\.rb\Z} do
+    at.files_matching ALL_TESTS
+  end
+  
+  at.add_mapping ALL_TESTS do |filename, _|
+    filename
+  end
+  
+  at.add_mapping %r{\Alib/google_chart\.rb\Z} do
+    at.files_matching ALL_TESTS
+  end
+  
+  at.add_mapping %r{\Alib/google_chart/(?:base|sizes|data|colors)\.rb\Z} do
+    at.files_matching ALL_TESTS
+  end
+  
+  at.add_mapping %r{\Alib/(.*/)+(.*)\.rb\Z} do |_, match|
+    at.files_matching %r{\Atest/#{match[1]}test_#{match[2]}\.rb}
+  end
+end
