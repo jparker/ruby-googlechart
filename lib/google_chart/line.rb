@@ -1,6 +1,8 @@
 module GoogleChart
   class Line < GoogleChart::Base
     include GoogleChart::Axes
+    include GoogleChart::GridLines
+    include GoogleChart::LineStyles
     
     @@types = { :line => 'lc', :xy => 'lxy', :sparkline => 'ls' }
     

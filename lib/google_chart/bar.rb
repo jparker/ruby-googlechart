@@ -1,6 +1,7 @@
 module GoogleChart
   class Bar < GoogleChart::Base
     include GoogleChart::Axes
+    include GoogleChart::GridLines
     
     @@groupings = { :grouped => 'g', :stacked => 's' }
     @@orientations = { :horizontal => 'h', :vertical => 'v' }

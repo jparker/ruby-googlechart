@@ -9,11 +9,15 @@ class TestGoogleChartBase < Test::Unit::TestCase
     assert GoogleChart::Base.include?(GoogleChart::Colors)
   end
   
+  def test_should_include_data_module
+    assert GoogleChart::Base.include?(GoogleChart::Data)
+  end
+  
   def test_should_include_sizes_module
     assert GoogleChart::Base.include?(GoogleChart::Sizes)
   end
   
-  def test_should_include_data_module
-    assert GoogleChart::Base.include?(GoogleChart::Data)
+  def test_should_include_titles_module
+    assert GoogleChart::Base.include?(GoogleChart::Titles)
   end
 end

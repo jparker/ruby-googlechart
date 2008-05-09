@@ -9,6 +9,10 @@ class TestGoogleChartBar < Test::Unit::TestCase
     assert GoogleChart::Bar.include?(GoogleChart::Axes)
   end
   
+  def test_should_include_grid_lines_module
+    assert GoogleChart::Bar.include?(GoogleChart::GridLines)
+  end
+  
   def test_should_have_default_bar_grouping_and_orientation
     assert_match /\bcht=bvs\b/, GoogleChart.Bar
   end

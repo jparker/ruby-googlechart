@@ -21,9 +21,11 @@ module GoogleChart
     # be used to ensure that the class variable is created in the inheriting
     # class and not GoogleChart::Base. This prevents sibling classes from
     # polluting each others' parameter registries.
+    #
+    # TODO: This is growing unwieldy. #register! should work with Base too.
     def self.inherited(klass)
       klass.class_eval %q{
-        @@params = {:size => 'chs', :type => 'cht', :data => 'chd', :colors => 'chco'}
+        @@params = {:size => 'chs', :type => 'cht', :data => 'chd', :colors => 'chco', :title => 'chtt'}
       }
     end
     
@@ -38,9 +40,10 @@ module GoogleChart
     
     # Chart size, data and color are common to all types of graphs, so these
     # modules are included in GoogleChart::Base.
-    include GoogleChart::Sizes
-    include GoogleChart::Data
     include GoogleChart::Colors
+    include GoogleChart::Data
+    include GoogleChart::Sizes
+    include GoogleChart::Titles
     
     protected
     # Proxies access to the parameters registry. #class_eval is used to make

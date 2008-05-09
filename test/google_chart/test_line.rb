@@ -9,6 +9,14 @@ class TestGoogleChartLine < Test::Unit::TestCase
     assert GoogleChart::Line.include?(GoogleChart::Axes)
   end
   
+  def test_should_include_grid_lines_module
+    assert GoogleChart::Line.include?(GoogleChart::GridLines)
+  end
+  
+  def test_should_include_line_styles_module
+    assert GoogleChart::Line.include?(GoogleChart::LineStyles)
+  end
+  
   def test_should_have_default_chart_type
     assert_match /\bcht=lc\b/, GoogleChart.Line
   end
