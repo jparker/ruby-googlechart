@@ -10,18 +10,18 @@ class TestGoogleChartColors < Test::Unit::TestCase
   end
   
   def test_should_be_able_to_specify_a_color
-    assert_match(/\bchco=ff0000\b/, TestChart.new(:colors => 'ff0000').to_url)
+    assert_match(/\bchco=ff0000\b/, TestChart.new(:color => 'ff0000').to_url)
   end
   
   def test_should_be_able_to_specify_multiple_colors
-    assert_match(/\bchco=ff0000,0000ff\b/, TestChart.new(:colors => %w[ff0000 0000ff]).to_url)
+    assert_match(/\bchco=ff0000,0000ff\b/, TestChart.new(:color => %w[ff0000 0000ff]).to_url)
   end
   
   def test_should_be_able_to_specify_color_by_name
-    assert_match(/\bchco=ff0000\b/, TestChart.new(:colors => :red).to_url)
+    assert_match(/\bchco=ff0000\b/, TestChart.new(:color => :red).to_url)
   end
   
   def test_should_be_able_to_mix_color_names_and_color_codes
-    assert_match(/\bchco=ff0000,0000ff\b/, TestChart.new(:colors => ['ff0000', :blue]).to_url)
+    assert_match(/\bchco=ff0000,0000ff\b/, TestChart.new(:color => ['ff0000', :blue]).to_url)
   end
 end

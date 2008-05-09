@@ -25,7 +25,7 @@ module GoogleChart
     # TODO: This is growing unwieldy. #register! should work with Base too.
     def self.inherited(klass)
       klass.class_eval %q{
-        @@params = {:size => 'chs', :type => 'cht', :data => 'chd', :colors => 'chco', :title => 'chtt'}
+        @@params = {:size => 'chs', :type => 'cht', :data => 'chd', :color => 'chco', :title => 'chtt'}
       }
     end
     

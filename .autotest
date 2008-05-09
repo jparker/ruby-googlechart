@@ -15,8 +15,18 @@ Autotest.add_hook :initialize do |at|
     at.files_matching ALL_TESTS
   end
   
-  at.add_mapping %r{\Alib/google_chart/(?:base|sizes|data|colors)\.rb\Z} do
+  at.add_mapping %r{\Alib/google_chart/(?:base|colors|data|sizes|titles)\.rb\Z} do
     at.files_matching ALL_TESTS
+  end
+  
+  at.add_mapping %r{\Alib/google_chart/(axes|grid_lines)\.rb\Z} do |_, match|
+    at.files_matching(%r{\Atest/google_chart/test_(?:bar|line)\.rb\Z}) +
+    at.files_matching(%r{\Atest/google_chart/test_#{match[1]}\.rb\Z})
+  end
+  
+  at.add_mapping %r{\Alib/google_chart/(line_styles)\.rb\Z} do |_, match|
+    at.files_matching(%r{\Atest/google_chart/test_(?:line)\.rb\Z}) +
+    at.files_matching(%r{\Atest/google_chart/test_#{match[1]}\.rb\Z})
   end
   
   at.add_mapping %r{\Alib/(.*/)+(.*)\.rb\Z} do |_, match|

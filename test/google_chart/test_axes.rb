@@ -43,7 +43,7 @@ class TestGoogleChartAxes < Test::Unit::TestCase
     assert_match(/\bchxl=0:\|foo\|bar\b/, url)
   end
   
-  def test_should_be_able_to_display_multiple_arrays_axis_labels
+  def test_should_be_able_to_display_multiple_arrays_as_axis_labels
     url = TestChart.new(:axes => {:x => %w[foo bar], :y => %w[baz froz]}).to_url
     assert_match(/\bchxt=x,y\b/, url)
     assert_match(/\bchxl=0:\|foo\|bar\|1:\|baz\|froz\b/, url)

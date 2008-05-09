@@ -1,10 +1,10 @@
 module GoogleChart
   module Colors
     def self.included(klass)
-      klass.register! :colors => 'chco' unless klass == GoogleChart::Base
+      klass.register! :color => 'chco' unless klass == GoogleChart::Base
     end
     
-    @@colors = {
+    @@named_colors = {
       :red      => 'ff0000',
       :green    => '00ff00',
       :blue     => '0000ff',
@@ -17,16 +17,16 @@ module GoogleChart
     
     protected
     # Returns the chart colors, if any.
-    def colors
-      @colors
+    def color
+      @color
     end
     
     # Sets the chart colors. +colors+ can be a String/Symbol or Array. Colors
     # may be given as hexadecimal color codes, e.g., ff0000, but can also be
     # given by name in which case it is looked up in @@colors.
-    def colors=(colors)
-      if colors
-        @colors = [colors].flatten.collect {|c| @@colors[c] || c }.join(',')
+    def color=(color)
+      if color
+        @color = [color].flatten.collect {|c| @@named_colors[c] || c }.join(',')
       end
     end
   end
