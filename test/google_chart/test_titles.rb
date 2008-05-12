@@ -1,15 +1,13 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-TestChart.class_eval do
-  include GoogleChart::Titles
-end
+FooChart.class_eval { include GoogleChart::Titles }
 
-class TestGoogleChartTitles < Test::Unit::TestCase
-  def test_should_not_have_default_title
-    assert_no_match(/\bchtt=/, TestChart.new.to_url)
+class TestTitles < Test::Unit::TestCase
+  def test_should_not_have_a_title_by_default
+    assert_nil(FooChart.new.title)
   end
   
-  def test_should_be_able_to_encode_and_display_title
-    assert_match(/\bchtt=foo\+bar\b/, TestChart.new(:title => 'foo bar').to_url)
+  def test_should_accept_and_properly_encode_title
+    assert_equal('chtt=foo+bar', FooChart.new(:title => 'foo bar').title)
   end
 end

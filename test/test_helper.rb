@@ -1,13 +1,13 @@
 require 'test/unit'
-unless ENV['TM_MODE']
-  require 'rubygems'
-  require 'redgreen'
-end
+require 'rubygems'
+require 'mocha'
+require 'redgreen' unless ENV['TM_MODE']
 require File.dirname(__FILE__) + '/../lib/google_chart'
 
-class TestChart < GoogleChart::Base
-  protected
-  def type
-    @type = 'cht=foo'
+class FooChart
+  def initialize(options = {})
+    options.each do |key, value|
+      send(:"#{key}=", value)
+    end
   end
 end

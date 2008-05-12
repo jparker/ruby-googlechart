@@ -1,31 +1,25 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-TestChart.class_eval do
-  include GoogleChart::Data
-end
+FooChart.class_eval { include GoogleChart::Data }
 
-class TestGoogleChartData < Test::Unit::TestCase
+class TestData < Test::Unit::TestCase
   def test_should_use_simple_encoding_by_default
-    assert_match /\bchd=s:A9\b/, TestChart.new(:data => [0,61]).to_url
+    assert_equal('chd=s:AB89', FooChart.new(:data => [0,1,60,61]).data)
   end
   
-  def test_should_be_able_to_use_simple_encoding_on_multiple_datasets
-    assert_match /\bchd=s:jp,yh\b/, TestChart.new(:data => [[35,41], [50,33]]).to_url
+  def test_should_be_able_to_use_simple_encoding_on_multiple_data_sets
+    assert_equal('chd=s:JP,YH', FooChart.new(:data => [[9,15], [24,7]]).data)
   end
   
   def test_should_correctly_encode_missing_data_using_simple_encoding
-    assert_match /\bchd=s:j_y\b/, TestChart.new(:data => [35,nil,50]).to_url
+    assert_equal('chd=s:y_h', FooChart.new(:data => [50,nil,33]).data)
   end
   
   def test_should_be_able_to_use_extended_encoding
-    assert_match /\bchd=e:AA\.\./, TestChart.new(:data => [0,4095], :encoding => :extended).to_url
+    assert_equal('chd=e:jpyh,JPYH', FooChart.new(:data => [[2281,3233], [591,1543]], :encoding => :extended).data)
   end
   
-  def test_should_be_able_to_use_extended_encoding_on_multiple_datasets
-    assert_match /\bchd=e:jpyh,JPYH\b/, TestChart.new(:data => [[2281,3233], [591,1543]], :encoding => :extended).to_url
-  end
-  
-  def test_should_correctly_encode_missing_data_using_extended_encoding
-    assert_match /\bchd=e:jp__yh\b/, TestChart.new(:data =>[2281,nil,3233], :encoding => :extended).to_url
+  def test_should_correnctly_encode_missing_data_using_extended_encoding
+    assert_equal('chd=e:jp__yh', FooChart.new(:data => [2281,nil,3233], :encoding => :extended).data)
   end
 end

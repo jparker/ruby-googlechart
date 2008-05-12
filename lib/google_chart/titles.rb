@@ -2,17 +2,10 @@ require 'cgi'
 
 module GoogleChart
   module Titles
-    def self.included(klass)
-      klass.register! :title => 'chtt' unless klass == GoogleChart::Base
-    end
+    attr_writer :title
     
-    protected
     def title
-      @title
-    end
-    
-    def title=(title)
-      @title = CGI::escape(title)
+      'chtt=' + CGI::escape(@title) if @title
     end
   end
 end

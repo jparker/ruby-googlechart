@@ -1,8 +1,8 @@
 require 'google_chart/version'
 
-AUTHOR = 'John Parker'  # can also be an array of Authors
-EMAIL = "jparker@urgetopunt.com"
-DESCRIPTION = 'An interface to the Google Chart API'
+AUTHOR = 'FIXME full name'  # can also be an array of Authors
+EMAIL = "FIXME email"
+DESCRIPTION = "description of gem"
 GEM_NAME = 'ruby-googlechart' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'ruby-googlechart' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
@@ -35,7 +35,7 @@ REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
 VERS = GoogleChart::VERSION::STRING + (REV ? ".#{REV}" : "")
-RDOC_OPTS = ['--quiet', '--title', 'google_chart documentation',
+RDOC_OPTS = ['--quiet', '--title', 'ruby-googlechart documentation',
     "--opname", "index.html",
     "--line-numbers",
     "--main", "README",

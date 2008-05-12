@@ -1,10 +1,14 @@
-= google_chart
+= ruby-googlechart
 
 * FIX (url)
 
 == DESCRIPTION:
 
-FIX (describe your package)
+A ruby interface to the Google Chart API. This is mostly an exercise. You may
+be better off using another interface such as:
+
+* Googlecharts (http://googlecharts.rubyforge.org/)
+* Gchartrb (http://code.google.com/p/gchartrb/)
 
 == FEATURES/PROBLEMS:
 
