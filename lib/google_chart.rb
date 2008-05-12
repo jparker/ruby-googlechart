@@ -5,7 +5,8 @@ module GoogleChart
   
 end
 
-require 'google_chart/sizes'
-require 'google_chart/data'
+require 'google_chart/axes'
 require 'google_chart/colors'
+require 'google_chart/data'
+require 'google_chart/sizes'
 require 'google_chart/titles'

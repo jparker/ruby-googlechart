@@ -1,15 +1,15 @@
 Char type (implemented by classes rather than modules)
 
 * Chart size
-* Chart data
+* Chart data (only supports simple & extended presently)
 * Chart colors
 Solid fill
 Data scaling
 Linear gradient
 Linear stripes
-Chart title
+* Chart title
 Chart legend
-Multiple axis labels
+* Multiple axis labels
 Grid lines
 Shape markers
 Horizontal range markers
