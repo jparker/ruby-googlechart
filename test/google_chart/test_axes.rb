@@ -37,6 +37,10 @@ class TestAxes < Test::Unit::TestCase
     assert_equal('chxt=x,y&chxl=0:|foo|bar|baz|1:|0|5|10', FooChart.new(:axes => {:x => %w[foo bar baz], :y => %w[0 5 10]}).axes)
   end
   
+  def test_should_correctly_escape_labels_for_url
+    assert_match(/chxl=0:\|foo\+bar\|baz%7Cfroz/, FooChart.new(:axes => {:x => ['foo bar', 'baz|froz']}).axes)
+  end
+  
   # axis label positions
   
   # axis ranges

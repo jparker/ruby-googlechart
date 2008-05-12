@@ -18,7 +18,7 @@ module GoogleChart
       [:x, :y, :r, :t].each do |axis|
         case axes[axis]
         when Array
-          @axis_labels << ("#{idx}:|" + axes[axis].join('|'))
+          @axis_labels << ("#{idx}:|" + axes[axis].collect {|l| CGI::escape(l) }.join('|'))
           @axes << axis
           idx += 1
         when Range
