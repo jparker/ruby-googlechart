@@ -5,6 +5,10 @@ class TestAxes < Test::Unit::TestCase
     @klass = Class.new(TestChart).class_eval { include GoogleChart::Axes }
   end
   
+  def test_should_add_axes_to_parameter_registry
+    assert @klass.registry.include?(:axes)
+  end
+  
   def test_should_not_display_axes_by_default
     assert_nil(@klass.new.axes)
   end

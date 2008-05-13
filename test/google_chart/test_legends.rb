@@ -5,6 +5,10 @@ class TestLegends < Test::Unit::TestCase
     @klass = Class.new(TestChart).class_eval { include GoogleChart::Legends }
   end
   
+  def test_should_add_legend_to_parameter_registry
+    assert @klass.registry.include?(:legend)
+  end
+  
   def test_should_not_display_legend_by_default
     assert_nil(@klass.new.legend)
   end

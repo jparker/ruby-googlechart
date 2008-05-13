@@ -5,6 +5,10 @@ class TestSizes < Test::Unit::TestCase
     @klass = Class.new(TestChart).class_eval { include GoogleChart::Sizes }
   end
   
+  def test_should_add_size_to_parameter_registry
+    assert @klass.registry.include?(:size)
+  end
+  
   def test_should_have_a_default_size
     assert_equal('chs=600x500', @klass.new.size)
   end

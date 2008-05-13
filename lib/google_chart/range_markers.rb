@@ -1,5 +1,9 @@
 module GoogleChart
   module RangeMarkers
+    def self.included(klass)
+      klass.register!(:ranges)
+    end
+    
     @@range_marker_orientations = { :h => 'r', :v => 'R' }
     
     def ranges

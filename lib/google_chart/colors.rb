@@ -7,6 +7,10 @@
 
 module GoogleChart
   module Colors
+    def self.included(klass)
+      klass.register!(:color)
+    end
+    
     attr_writer :color
     
     def color

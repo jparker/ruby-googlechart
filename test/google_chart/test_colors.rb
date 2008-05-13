@@ -5,6 +5,10 @@ class TestColors < Test::Unit::TestCase
     @klass = Class.new(TestChart).class_eval { include GoogleChart::Colors }
   end
   
+  def test_should_add_color_to_parameter_registry
+    assert @klass.registry.include?(:color)
+  end
+  
   def test_should_not_have_a_color_by_default
     assert_nil(@klass.new.color)
   end

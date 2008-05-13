@@ -5,6 +5,10 @@ class TestData < Test::Unit::TestCase
     @klass = Class.new(TestChart).class_eval { include GoogleChart::Data }
   end
   
+  def test_should_add_data_to_parameter_registry
+    assert @klass.registry.include?(:data)
+  end
+  
   def test_should_use_simple_encoding_by_default
     assert_equal('chd=s:AB89', @klass.new(:data => [0,1,60,61]).data)
   end

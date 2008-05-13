@@ -1,5 +1,9 @@
 module GoogleChart
   module BarStyles
+    def self.included(klass)
+      klass.register!(:style)
+    end
+    
     attr_writer :width
     
     def style

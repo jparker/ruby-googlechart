@@ -5,6 +5,10 @@ class TestTitles < Test::Unit::TestCase
     @klass = Class.new(TestChart).class_eval { include GoogleChart::Titles }
   end
   
+  def test_should_add_title_to_parameter_registry
+    assert @klass.registry.include?(:title)
+  end
+  
   def test_should_not_have_a_title_by_default
     assert_nil(@klass.new.title)
   end

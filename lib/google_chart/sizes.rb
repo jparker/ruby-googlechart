@@ -14,6 +14,10 @@
 
 module GoogleChart
   module Sizes
+    def self.included(klass)
+      klass.register!(:size)
+    end
+    
     attr_writer :size
     
     @@default_size = '600x500'

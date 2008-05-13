@@ -5,6 +5,10 @@ class TestBarStyles < Test::Unit::TestCase
     @klass = Class.new(TestChart).class_eval { include GoogleChart::BarStyles }
   end
   
+  def test_should_add_style_to_parameter_registry
+    assert @klass.registry.include?(:style)
+  end
+  
   def test_should_not_have_bar_style_by_default
     assert_nil(@klass.new.style)
   end

@@ -1,5 +1,9 @@
 module GoogleChart
   module Data
+    def self.included(klass)
+      klass.register!(:data)
+    end
+    
     attr_writer :encoding, :scale
     
     @@simple_encoding   = ('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a
@@ -25,15 +29,7 @@ module GoogleChart
       @scale
     end
     
-    def simple_encoding
-      @@simple_encoding
-    end
-    
-    def extended_encoding
-      @@extended_encoding
-    end
-    
-    def scale(set, range)
+    def scale_set(set, range)
       if scale?
         min, max = set.min, set.max
         if min < 0
@@ -48,7 +44,7 @@ module GoogleChart
     
     def simple_encode(data)
       's:' + data.collect {|set|
-        scale(set, @@simple_encoding.size - 1).collect {|n|
+        scale_set(set, @@simple_encoding.size - 1).collect {|n|
           case
           when n.nil? then '_'
           when n <= 0 then @@simple_encoding[0]
@@ -61,7 +57,7 @@ module GoogleChart
     
     def extended_encode(data)
       'e:' + data.collect {|set|
-        scale(set, @@extended_encoding.size - 1).collect {|n|
+        scale_set(set, @@extended_encoding.size - 1).collect {|n|
           case
           when n.nil? then '__'
           when n <= 0 then @@extended_encoding[0]
@@ -74,7 +70,7 @@ module GoogleChart
     
     def text_encode(data)
       't:' + data.collect {|set|
-        scale(set, 100).collect {|n|
+        scale_set(set, 100).collect {|n|
           case
           when n.nil? then -1
           when n < 0 then 0

@@ -1,5 +1,9 @@
 module GoogleChart
   module LineStyles
+    def self.included(klass)
+      klass.register!(:style)
+    end
+    
     @@line_styles = { :solid => [1,1,0], :dash => [1,3,2], :dot => [1,1,2] }
     @@default_line_style = :solid
     @@default_line_width = 1

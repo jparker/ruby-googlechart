@@ -1,5 +1,9 @@
 module GoogleChart
   module Axes
+    def self.included(klass)
+      klass.register!(:axes)
+    end
+    
     # TODO: Add support for axis label positions/styles, support for multiple label sets per axis
     
     def axes

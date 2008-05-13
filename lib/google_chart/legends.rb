@@ -1,5 +1,9 @@
 module GoogleChart
   module Legends
+    def self.included(klass)
+      klass.register!(:legend)
+    end
+    
     attr_writer :legend
     
     def legend

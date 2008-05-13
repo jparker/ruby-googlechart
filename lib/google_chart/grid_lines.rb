@@ -1,5 +1,9 @@
 module GoogleChart
   module GridLines
+    def self.included(klass)
+      klass.register!(:grid)
+    end
+    
     @@grid_line_styles  = { :solid => [1,0], :dash => [3,2], :dot => [1,2] }
     @@default_grid_step = 0
     
