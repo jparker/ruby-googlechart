@@ -6,6 +6,7 @@ module GoogleChart
 end
 
 require 'google_chart/axes'
+require 'google_chart/bar_styles'
 require 'google_chart/colors'
 require 'google_chart/data'
 require 'google_chart/grid_lines'

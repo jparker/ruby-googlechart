@@ -1,21 +1,23 @@
-Char type (implemented by classes rather than modules)
-
-* Chart size
-* Chart data (only supports simple & extended presently)
-* Chart colors
+Chart type (implemented by classes rather than modules)
 Solid fill
 Data scaling
 Linear gradient
 Linear stripes
-* Chart title
-Chart legend
-* Multiple axis labels
-Grid lines
 Shape markers
 Horizontal range markers
 Vertical range markers
-Line styles
 Fill area
 Bar width and spacing
 Bar chart zero line
 Pie chart labels
+
+Done:
+
+* Chart size
+* Chart data (only supports simple & extended presently)
+* Chart colors
+* Chart title
+* Chart legend
+* Multiple axis labels
+* Grid lines
+* Line styles
