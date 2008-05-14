@@ -1,4 +1,6 @@
-== 0.0.1 2008-05-10
+== 0.0.1 2008-05-14
 
 * 1 major enhancement:
   * Initial release
+  * Bar chart support
+  * Line chart support

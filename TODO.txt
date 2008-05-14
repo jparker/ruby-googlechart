@@ -1,13 +1,9 @@
-Chart type (implemented by classes rather than modules)
 Solid fill
 Data scaling
 Linear gradient
 Linear stripes
 Shape markers
-Horizontal range markers
-Vertical range markers
 Fill area
-Bar width and spacing
 Bar chart zero line
 Pie chart labels
 

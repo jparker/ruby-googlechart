@@ -28,11 +28,11 @@ be better off using another interface such as:
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* Low standards
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install ruby-googlechart
 
 == LICENSE:
 
