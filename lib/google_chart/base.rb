@@ -27,16 +27,17 @@ module GoogleChart
       registry.push(*parameters)
     end
     
+    # Collect all of the registered chart parameters and join them together
+    # to form the URL for the chart to be generated.
+    def to_url
+      @@base_url + self.class.registry.collect {|p| send(p) }.compact.join('&')
+    end
+    
+    private
     # Proxies access to the parameter registry. The proxy is necessary to
     # ensure the class variable being accessed lives in Base's descendent.
     def self.registry
       class_eval '@@registry'
-    end
-    
-    # Collect all of the registered chart parameters and join them together
-    # to form the URL for the chart to be generated.
-    def to_url
-      @@base_url + self.class.registry.collect {|p| send(p) }.join('&')
     end
   end
 end
