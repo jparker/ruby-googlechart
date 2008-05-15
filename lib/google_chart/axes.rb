@@ -1,3 +1,4 @@
+# <URL:http://code.google.com/apis/chart/#multiple_axes_labels>
 module GoogleChart
   module Axes
     def self.included(klass)

@@ -1,3 +1,4 @@
+# <URL:http://code.google.com/apis/chart/#hor_line_marker>
 module GoogleChart
   module RangeMarkers
     def self.included(klass)

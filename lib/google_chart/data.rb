@@ -1,3 +1,4 @@
+# <URL:http://code.google.com/apis/chart/#chart_data>
 module GoogleChart
   module Data
     def self.included(klass)

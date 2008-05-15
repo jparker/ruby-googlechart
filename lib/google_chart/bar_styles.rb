@@ -1,3 +1,4 @@
+# <URL:http://code.google.com/apis/chart/#bar_width>
 module GoogleChart
   module BarStyles
     def self.included(klass)

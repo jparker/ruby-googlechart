@@ -1,3 +1,4 @@
+# <URL:http://code.google.com/apis/chart/#line_styles>
 module GoogleChart
   module LineStyles
     def self.included(klass)

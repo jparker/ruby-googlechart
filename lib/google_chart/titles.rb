@@ -1,5 +1,6 @@
 require 'cgi'
 
+# <URL:http://code.google.com/apis/chart/#chtt>
 module GoogleChart
   module Titles
     def self.included(klass)

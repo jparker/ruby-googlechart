@@ -1,3 +1,4 @@
+# <URL:http://code.google.com/apis/chart/#chdl>
 module GoogleChart
   module Legends
     def self.included(klass)

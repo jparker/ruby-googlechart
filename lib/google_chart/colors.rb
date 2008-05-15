@@ -1,10 +1,4 @@
-# Specify colors for lines, bars, Venn diagrams, Google-o-meters, and pie segments with
-# chco=
-# <color1>,
-# ...
-# <colorn>
-# Where <color1> and all subsequent color values are RRGGBB format hexadecimal numbers.
-
+# <URL:http://code.google.com/apis/chart/#line_bar_pie_colors>
 module GoogleChart
   module Colors
     def self.included(klass)

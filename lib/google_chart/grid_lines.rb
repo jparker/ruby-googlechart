@@ -1,3 +1,4 @@
+# <URL:http://code.google.com/apis/chart/#grid>
 module GoogleChart
   module GridLines
     def self.included(klass)
