@@ -12,19 +12,25 @@ module GoogleChart
     end
     
     # This initializes the @@registry class variable within the scope of the
-    # descendent class where it won't interfere with sibling classes.
+    # descendent class where it won't interfere with sibling classes. The
+    # registry is initialized with the chart_type parameters which descendent
+    # classes are required to implement.
     def self.inherited(klass)
-      klass.class_eval '@@registry = []'
+      klass.class_eval do
+        class_variable_set(:@@registry, [])
+        register!(:chart_type)
+      end
     end
     
     # Adds the given paremters to the parameter registry. Modules implementing
     # specific chart parameters should define an #included class method from
-    # which to send #register! to the class including the module. The arguments
-    # to #register! should be one or more symbols representing methods to be
-    # called to retrieve specific chart parameters. Those methods should be
-    # defined in the module.
-    def self.register!(*parameters)
-      registry.push(*parameters)
+    # which to send #register! to the class including the module. The argument
+    # to #register! should be one a symbol representing the method to be
+    # called to retrieve a specific chart parameter. That method should be
+    # defined in the module. A module may call #register! multiple times if
+    # more than one parameter must be registered.
+    def self.register!(parameter)
+      registry << parameter
     end
     
     # Collect all of the registered chart parameters and join them together
@@ -34,10 +40,9 @@ module GoogleChart
     end
     
     private
-    # Proxies access to the parameter registry. The proxy is necessary to
-    # ensure the class variable being accessed lives in Base's descendent.
+    # Proxy access to the parameter registry.
     def self.registry
-      class_eval '@@registry'
+      class_variable_get :@@registry
     end
   end
 end

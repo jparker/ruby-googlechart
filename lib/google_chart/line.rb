@@ -12,8 +12,6 @@ module GoogleChart
     include Sizes
     include Titles
     
-    register! :chart_type
-    
     def chart_type
       @chart_type ||= @@chart_types[:line]
       'cht=' + @chart_type if @chart_type

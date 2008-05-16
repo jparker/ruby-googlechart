@@ -10,8 +10,6 @@ module GoogleChart
     include Sizes
     include Titles
     
-    register! :chart_type
-    
     attr_writer :horizontal, :grouped
     
     def chart_type

@@ -1,7 +1,8 @@
 require 'test/unit'
-require 'rubygems'
-require 'mocha'
-require 'redgreen' unless ENV['TM_MODE']
+unless ENV['TM_MODE']
+  require 'rubygems'
+  require 'redgreen'
+end
 require File.dirname(__FILE__) + '/../lib/google_chart'
 
 class TestChart < GoogleChart::Base
