@@ -1,38 +1,26 @@
 = ruby-googlechart
 
+* FIX (url)
+
 == DESCRIPTION:
 
-A ruby interface to the Google Chart API. This is mostly an exercise. You may
-be better off using another interface such as:
+FIX (describe your package)
 
-* Googlecharts (http://googlecharts.rubyforge.org/)
-* Gchartrb (http://code.google.com/p/gchartrb/)
+== FEATURES/PROBLEMS:
 
-== FEATURES:
-
-* Bar charts
-* Line charts
-
-== STILL TO DO:
-
-* Pie charts
-* Scatter plots
-* Radar charts
-* Google-o-Meters
+* FIX (list of features or problems)
 
 == SYNOPSIS:
 
-  GoogleChart.Bar(:data => [6,14,8,16], :color => '00aa00', :axes => {:y => true, :r => true}, :width => 20)
-  
-  GoogleChart.Line(:data => [[35,41], [50,33]], :color => %w[ff0000 ffcccc], :style => [:dot, :solid], :width => [2,1], :axes => {:x => 0..50, :y => true})
+  FIX (code sample of usage)
 
 == REQUIREMENTS:
 
-* Low standards
+* FIX (list of requirements)
 
 == INSTALL:
 
-* sudo gem install ruby-googlechart
+* FIX (sudo gem install, anything else)
 
 == LICENSE:
 
