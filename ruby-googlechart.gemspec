@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "README.txt",
     "lib/google_chart.rb",
-    "lib/google_chart/axes.rb"
+    "lib/google_chart/axes.rb",
     "lib/google_chart/bar.rb",
     "lib/google_chart/bar_styles.rb",
     "lib/google_chart/base.rb",
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.test_files  = [
     "test/test_helper.rb",
     "test/test_google_chart.rb",
-    "test/google_chart/test_axes.rb"
+    "test/google_chart/test_axes.rb",
     "test/google_chart/test_bar.rb",
     "test/google_chart/test_bar_styles.rb",
     "test/google_chart/test_base.rb",
@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   s.rdoc_options     = ['--main', 'README.txt']
   s.extra_rdoc_files = ['History.txt', 'Manifest.txt', 'README.txt']
   
-  s.add_dependency('newgem', ['>= 1.0.3']
+  s.add_dependency('newgem', ['>= 1.0.3'])
   s.add_dependency('hoe', ['>= 1.8.0'])
   s.add_dependency('thoughtbot-shoulda', ['>= 2.0.0'])
 end
