@@ -1,7 +1,12 @@
 module GoogleChart
   class Bar < AbstractChart
+    include Axis
+    include BarStyle
     include Color
     include Data
+    include GridLine
+    include Legend
+    include RangeMarker
     include Title
     
     @@orientations = {:horizontal => 'h', :vertical => 'v'}

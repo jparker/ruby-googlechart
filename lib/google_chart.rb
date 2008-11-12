@@ -4,9 +4,14 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'cgi'
 
 require 'google_chart/abstract_chart'
+require 'google_chart/axis'
+require 'google_chart/bar_style'
 require 'google_chart/color'
 require 'google_chart/data'
+require 'google_chart/grid_line'
+require 'google_chart/legend'
 require 'google_chart/line_style'
+require 'google_chart/range_marker'
 require 'google_chart/title'
 
 require 'google_chart/bar'
