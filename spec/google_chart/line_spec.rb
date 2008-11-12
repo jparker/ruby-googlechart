@@ -28,4 +28,8 @@ describe GoogleChart::Line do
   it 'includes the title module' do
     GoogleChart::Line.should include(GoogleChart::Title)
   end
+  
+  it 'includes the line style module' do
+    GoogleChart::Line.should include(GoogleChart::LineStyle)
+  end
 end

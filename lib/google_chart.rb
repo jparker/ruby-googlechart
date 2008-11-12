@@ -14,4 +14,12 @@ require 'google_chart/line'
 
 module GoogleChart
   VERSION = '0.5.0'
+  
+  def self.Line(options = {}, &block)
+    GoogleChart::Line.new(options, &block).to_url
+  end
+  
+  def self.Bar(options = {}, &block)
+    GoogleChart::Bar.new(options, &block).to_url
+  end
 end

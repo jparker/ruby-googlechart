@@ -1,6 +1,7 @@
 module GoogleChart
   class Line < AbstractChart
     include Color
+    include LineStyle
     include Title
     
     @@types = {:line => 'lc', :xy => 'lxy', :spark => 'ls'}
