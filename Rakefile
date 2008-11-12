@@ -1,9 +1,9 @@
 %w[rubygems rake rake/clean fileutils newgem rubigen].each { |f| require f }
-require File.dirname(__FILE__) + '/lib/ruby-googlechart'
+require File.dirname(__FILE__) + '/lib/google_chart'
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.new('ruby-googlechart', RubyGooglechart::VERSION) do |p|
+$hoe = Hoe.new('ruby-googlechart', GoogleChart::VERSION) do |p|
   p.developer('John Parker', 'jparker@urgetopunt.com')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required

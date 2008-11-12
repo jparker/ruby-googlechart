@@ -7,4 +7,10 @@ rescue LoadError
 end
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
-require 'ruby-googlechart'
+require 'google_chart'
+
+class MockChart < GoogleChart::AbstractChart
+  def type
+    'cht=mock'
+  end
+end

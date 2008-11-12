@@ -1,26 +1,43 @@
 = ruby-googlechart
 
-* FIX (url)
+* http://github.com/jparker/ruby-googlechart
 
 == DESCRIPTION:
 
-FIX (describe your package)
+ruby-googlechart is a ruby library which provides object-oriented
+access to the Google Charts API.
+
+This library has largely been done as an exercise. These other ruby
+libraries are more mature and may be better suited to your needs:
+
+* http://googlecharts.rubyforge.org/
+* http://code.google.com/p/gchartrb/
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* Limited support for Line and Bar charts
 
 == SYNOPSIS:
-
-  FIX (code sample of usage)
+  
+  url = GoogleChart::Line.new(:data => [1, nil, 2, 8, 1]).to_url
+  
+  url = GoogleChart::Line.new do |c|
+    c.type     = :line
+    c.size     = '800x375'
+    c.data     = [335, 285, 240, 220, 160, 175, 200, 205]
+    c.scale    = 0..400
+    c.encoding = :extended
+    c.title    = 'Chart Title'
+  end.to_url
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* newgem >= 1.0.3
+* hoe >= 1.8.0
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install jparker-ruby-googlechart -s http://gems.github.com/
 
 == LICENSE:
 
