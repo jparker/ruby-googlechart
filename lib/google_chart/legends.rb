@@ -5,10 +5,12 @@ module GoogleChart
       klass.register!(:legend)
     end
     
-    attr_writer :legend
+    def legend=(legend)
+      @legend = [legend].flatten.map {|l| CGI::escape(l) }
+    end
     
     def legend
-      'chdl=' + [@legend].flatten.collect {|l| CGI::escape(l) }.join('|') if @legend
+      "chdl=#{@legend.join('|')}" if @legend
     end
   end
 end

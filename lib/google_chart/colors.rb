@@ -5,10 +5,12 @@ module GoogleChart
       klass.register!(:color)
     end
     
-    attr_writer :color
+    def color=(color)
+      @color = [color].flatten
+    end
     
     def color
-      'chco=' + [@color].flatten.join(',') if @color
+      "chco=#{@color.join(',')}" if @color
     end
   end
 end

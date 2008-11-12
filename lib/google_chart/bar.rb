@@ -10,18 +10,23 @@ module GoogleChart
     include Sizes
     include Titles
     
-    attr_writer :horizontal, :grouped
+    @@orientations = {:horizontal => 'h', :vertical => 'v'}
+    @@groupings    = {:grouped    => 'g', :stacked  => 's'}
+    
+    attr_writer :orientation, :grouping
+    
+    def horizontal=(arg)
+      self.orientation = arg ? :horizontal : :vertical
+    end
+    
+    def grouped=(arg)
+      self.grouping = arg ? :grouped : :stacked
+    end
     
     def chart_type
-      'cht=b' + (horizontal? ? 'h' : 'v') + (grouped? ? 'g' : 's')
-    end
-    
-    def horizontal?
-      @horizontal
-    end
-    
-    def grouped?
-      @grouped
+      @grouping    ||= :stacked
+      @orientation ||= :vertical
+      "cht=b#{@@orientations[@orientation]}#{@@groupings[@grouping]}"
     end
   end
 end

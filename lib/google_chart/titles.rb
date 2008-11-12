@@ -7,10 +7,12 @@ module GoogleChart
       klass.register!(:title)
     end
     
-    attr_writer :title
+    def title=(title)
+      @title = CGI::escape(title)
+    end
     
     def title
-      'chtt=' + CGI::escape(@title) if @title
+      "chtt=#{@title}" if @title
     end
   end
 end

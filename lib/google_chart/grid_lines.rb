@@ -9,7 +9,7 @@ module GoogleChart
     @@default_grid_step = 0
     
     def grid
-      'chg=' + @grid if @grid
+      "chg=#{@grid}" if @grid
     end
     
     def grid=(grid)
