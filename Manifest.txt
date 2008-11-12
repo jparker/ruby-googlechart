@@ -21,7 +21,7 @@ lib/google_chart/line_styles.rb
 lib/google_chart/range_markers.rb
 lib/google_chart/sizes.rb
 lib/google_chart/titles.rb
-lib/google_chart/version.rb
+ruby-googlechart.gemspec
 script/console
 script/destroy
 script/generate

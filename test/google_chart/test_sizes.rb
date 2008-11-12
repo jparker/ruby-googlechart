@@ -2,18 +2,14 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TestSizes < Test::Unit::TestCase
   def setup
-    @klass = Class.new(TestChart).class_eval { include GoogleChart::Sizes }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::Sizes }
   end
   
-  def test_should_add_size_to_parameter_registry
-    assert @klass.registry.include?(:size)
+  should 'have a default size' do
+    assert_match(/\bchs=600x500\b/, @klass.new.to_url)
   end
   
-  def test_should_have_a_default_size
-    assert_equal('chs=600x500', @klass.new.size)
-  end
-  
-  def test_should_accept_a_custom_size
-    assert_equal('chs=800x375', @klass.new(:size => '800x375').size)
+  should 'accept custom size' do
+    assert_match(/\bchs=800x375\b/, @klass.new(:size => '800x375').to_url)
   end
 end

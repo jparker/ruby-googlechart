@@ -1,55 +1,55 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TestLine < Test::Unit::TestCase
-  def test_should_have_default_chart_type
-    assert_equal('cht=lc', GoogleChart::Line.new.chart_type)
+  should 'have a default chart type' do
+    assert_match(/\bcht=lc\b/, GoogleChart::Line.new.to_url)
   end
   
-  def test_should_accept_xy_as_chart_type
-    assert_equal('cht=lxy', GoogleChart::Line.new(:type => :xy).chart_type)
+  should 'support xy chart type' do
+    assert_match(/\bcht=lxy\b/, GoogleChart::Line.new(:type => :xy).to_url)
   end
   
-  def test_should_accept_sparkline_as_chart_type
-    assert_equal('cht=ls', GoogleChart::Line.new(:type => :sparkline).chart_type)
+  should 'support sparkline chart type' do
+    assert_match(/\bcht=ls\b/, GoogleChart::Line.new(:type => :sparkline).to_url)
   end
   
-  def test_should_accept_line_as_chart_type
-    assert_equal('cht=lc', GoogleChart::Line.new(:type => :line).chart_type)
+  should 'support line as chart type' do
+    assert_match(/\bcht=lc\b/, GoogleChart::Line.new(:type => :line).to_url)
   end
   
-  def test_should_include_axes_module
-    assert GoogleChart::Line.include?(GoogleChart::Axes)
+  should 'include Axes module' do
+    assert GoogleChart::Axes === GoogleChart::Line.new
   end
   
-  def test_should_include_colors_module
-    assert GoogleChart::Line.include?(GoogleChart::Colors)
+  should 'include Colors module' do
+    assert GoogleChart::Colors === GoogleChart::Line.new
   end
   
-  def test_should_include_data_module
-    assert GoogleChart::Line.include?(GoogleChart::Data)
+  should 'include Data module' do
+    assert GoogleChart::Data === GoogleChart::Line.new
   end
   
-  def test_should_include_grid_lines_module
-    assert GoogleChart::Line.include?(GoogleChart::GridLines)
+  should 'include GridLines module' do
+    assert GoogleChart::GridLines === GoogleChart::Line.new
   end
   
-  def test_should_include_legends_module
-    assert GoogleChart::Line.include?(GoogleChart::Legends)
+  should 'include Legends module' do
+    assert GoogleChart::Legends === GoogleChart::Line.new
   end
   
-  def test_should_include_line_styles_module
-    assert GoogleChart::Line.include?(GoogleChart::LineStyles)
+  should 'include LineStyles module' do
+    assert GoogleChart::LineStyles === GoogleChart::Line.new
   end
   
-  def test_should_include_range_markers_module
-    assert GoogleChart::Line.include?(GoogleChart::RangeMarkers)
+  should 'include RangeMarkers module' do
+    assert GoogleChart::RangeMarkers === GoogleChart::Line.new
   end
   
-  def test_should_include_sizes_module
-    assert GoogleChart::Line.include?(GoogleChart::Sizes)
+  should 'include Sizes module' do
+    assert GoogleChart::Sizes === GoogleChart::Line.new
   end
   
-  def test_should_include_titles_module
-    assert GoogleChart::Line.include?(GoogleChart::Titles)
+  should 'include Titles module' do
+    assert GoogleChart::Titles === GoogleChart::Line.new
   end
 end

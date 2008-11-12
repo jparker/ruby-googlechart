@@ -8,11 +8,7 @@ module GoogleChart
     attr_writer :width
     
     def style
-      if @width
-        "chbh=#{@width}" + (@spacing ? ",#{@spacing.join(',')}" : '')
-      elsif @spacing
-        raise 'spacing requires width option'
-      end
+      "chbh=#{[@width, *@spacing].compact.join(',')}" if @width
     end
     
     # Spacing can be given as a single number for space between bars within a

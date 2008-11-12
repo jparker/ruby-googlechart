@@ -17,11 +17,13 @@ require 'google_chart/bar'
 require 'google_chart/line'
 
 module GoogleChart
-  def self.Line(options = {})
-    Line.new(options).to_url
+  VERSION = '0.5.0'
+  
+  def self.Line(options = {}, &block)
+    GoogleChart::Line.new(options, &block).to_url
   end
   
-  def self.Bar(options = {})
-    Bar.new(options).to_url
+  def self.Bar(options = {}, &block)
+    GoogleChart::Bar.new(options, &block).to_url
   end
 end

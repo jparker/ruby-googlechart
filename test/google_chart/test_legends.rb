@@ -2,26 +2,22 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TestLegends < Test::Unit::TestCase
   def setup
-    @klass = Class.new(TestChart).class_eval { include GoogleChart::Legends }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::Legends }
   end
   
-  def test_should_add_legend_to_parameter_registry
-    assert @klass.registry.include?(:legend)
+  should 'not display legend by default' do
+    assert_no_match(/\bchdl=/, @klass.new.to_url)
   end
   
-  def test_should_not_display_legend_by_default
-    assert_nil(@klass.new.legend)
+  should 'display legend for single dataset' do
+    assert_match(/\bchdl=Foo\b/, @klass.new(:legend => 'Foo').to_url)
   end
   
-  def test_should_be_able_to_display_legend_for_single_dataset
-    assert_equal('chdl=Foo', @klass.new(:legend => 'Foo').legend)
+  should 'display legend for multiple datasets' do
+    assert_match(/\bchdl=Foo\|Bar\|Baz\b/, @klass.new(:legend => %w[Foo Bar Baz]).to_url)
   end
   
-  def test_should_be_able_to_display_legend_for_multiple_datasets
-    assert_equal('chdl=Foo|Bar|Baz', @klass.new(:legend => %w[Foo Bar Baz]).legend)
-  end
-  
-  def test_should_correctly_escape_legend_for_url
-    assert_equal('chdl=Foo+Bar', @klass.new(:legend => 'Foo Bar').legend)
+  should 'escape legend text for url' do
+    assert_match(/\bchdl=Foo\+Bar%7CBaz\b/, @klass.new(:legend => 'Foo Bar|Baz').to_url)
   end
 end

@@ -2,31 +2,26 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TestRangeMarkers < Test::Unit::TestCase
   def setup
-    @klass = Class.new(TestChart).class_eval { include GoogleChart::RangeMarkers }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::RangeMarkers }
   end
   
-  def test_should_add_ranges_to_parameter_registry
-    assert @klass.registry.include?(:ranges)
+  should 'not have range markers by default' do
+    assert_no_match(/\bchm=/, @klass.new.to_url)
   end
   
-  def test_should_not_have_range_markers_by_default
-    assert_nil(@klass.new.ranges)
+  should 'display horizontal range markers' do
+    assert_match(/\bchm=r,000000cc,x,0.45,0.55\b/, @klass.new(:ranges => [:h, 0.45, 0.55]).to_url)
   end
   
-  def test_should_be_able_to_display_horizontal_range
-    assert_equal('chm=r,000000cc,x,0.45,0.55', @klass.new(:ranges => [:h, 0.45, 0.55]).ranges)
+  should 'display vertical range markers' do
+    assert_match(/\bchm=R,000000cc,x,0.45,0.55\b/, @klass.new(:ranges => [:v, 0.45, 0.55]).to_url)
   end
   
-  def test_should_be_able_to_display_vertical_range
-    assert_equal('chm=R,000000cc,x,0.45,0.55', @klass.new(:ranges => [:v, 0.45, 0.55]).ranges)
+  should 'display multiple range markers' do
+    assert_match(/\bchm=r,000000cc,x,0.1,0.2\|R,000000cc,x,0.3,0.4\b/, @klass.new(:ranges => [[:h, 0.1, 0.2], [:v, 0.3, 0.4]]).to_url)
   end
   
-  def test_should_be_able_to_display_multiple_ranges
-    assert_equal 'chm=r,000000cc,x,0.1,0.2|R,000000cc,x,0.3,0.4',
-      @klass.new(:ranges => [[:h, 0.1, 0.2], [:v, 0.3, 0.4]]).ranges
-  end
-  
-  def test_should_be_able_to_specify_range_color
-    assert_equal('chm=r,abcdef,x,0.4,0.6', @klass.new(:ranges => [:h, 'abcdef', 0.4, 0.6]).ranges)
+  should 'display range markers with custom colors' do
+    assert_match(/\bchm=r,abcdef,x,0.4,0.6\b/, @klass.new(:ranges => [:h, 'abcdef', 0.4, 0.6]).to_url)
   end
 end
