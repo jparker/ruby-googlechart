@@ -1,8 +1,8 @@
-= ruby-googlechart
+== ruby-googlechart
 
 * http://github.com/jparker/ruby-googlechart
 
-== DESCRIPTION:
+== DESCRIPTION
 
 ruby-googlechart is a ruby library which provides object-oriented
 access to the Google Charts API.
@@ -13,33 +13,52 @@ libraries are more mature and may be better suited to your needs:
 * http://googlecharts.rubyforge.org/
 * http://code.google.com/p/gchartrb/
 
-== FEATURES/PROBLEMS:
+== FEATURES
 
-* Limited support for Line and Bar charts
+* Line charts (line, XY, sparkline)
+* Bar charts (horizontal, vertical, grouped, stacked)
 
-== SYNOPSIS:
+== SYNOPSIS
+  
+  require 'google_chart'
   
   url = GoogleChart.Line(:data => [1, nil, 2, 8, 1])
+  url = GoogleChart.Bar(:data => [5, 23, 6, 14])
   
-  url = GoogleChart.Line do |c|
-    c.type     = :line
-    c.size     = '800x375'
+  url = GoogleChart.Bar do |c|
+    c.axes     = {:x => %w[Q1 Q2 Q3 Q4], :y => 0..400}
     c.data     = [335, 285, 240, 220, 160, 175, 200, 205]
-    c.scale    = 0..400
     c.encoding = :extended
-    c.title    = 'Chart Title'
+    c.scale    = 0..400
+    c.size     = '800x375'
+    c.style    = :dash
+    c.title    = "Are You Pondering What I'm Pondering?"
+    c.type     = :line
   end
+  url = GoogleChart.Bar do |c|
+    c.horizontal = true
+    c.grouped    = true
+    c.data       = [[5, 6, 7, 8], [23, 14, 17, 16]]
+    c.encoding   = :text
+    c.title      = 'Lorem Ipsum Dolor'
+  end
+  
+  chart = GoogleChart::LineChart.new
+  chart.type  = :sparkline
+  chart.size  = '75x25'
+  chart.data  = [1, 1, 2, 3, 5, 8, 13]
+  chart.color = 'ff0000'
+  url = chart.to_url
 
-== REQUIREMENTS:
+== REQUIREMENTS
 
-* newgem >= 1.0.3
-* hoe >= 1.8.0
+* Low standards
 
-== INSTALL:
+== INSTALL
 
 * sudo gem install jparker-ruby-googlechart -s http://gems.github.com/
 
-== LICENSE:
+== LICENSE
 
 (The MIT License)
 

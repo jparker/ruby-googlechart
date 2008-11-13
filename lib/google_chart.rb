@@ -18,8 +18,6 @@ require 'google_chart/bar_chart'
 require 'google_chart/line_chart'
 
 module GoogleChart
-  VERSION = '0.6.0'
-  
   def self.Line(options = {}, &block)
     GoogleChart::LineChart.new(options, &block).to_url
   end

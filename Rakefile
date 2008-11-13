@@ -1,25 +1,14 @@
-%w[rubygems rake rake/clean fileutils newgem rubigen].each { |f| require f }
-require File.dirname(__FILE__) + '/lib/google_chart'
+require 'rubygems'
+require 'rake'
+require 'echoe'
 
-# Generate all the Rake tasks
-# Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.new('ruby-googlechart', GoogleChart::VERSION) do |p|
-  p.developer('John Parker', 'jparker@urgetopunt.com')
-  p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
-  p.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
-  p.rubyforge_name       = p.name # TODO this is default value
-  # p.extra_deps         = [
-  #   ['activesupport','>= 2.0.2'],
-  # ]
-  p.extra_dev_deps = [
-    ['newgem', ">= #{::Newgem::VERSION}"]
-  ]
-  
-  p.clean_globs |= %w[**/.DS_Store tmp *.log]
-  path = (p.rubyforge_name == p.name) ? p.rubyforge_name : "\#{p.rubyforge_name}/\#{p.name}"
-  p.remote_rdoc_dir = File.join(path.gsub(/^#{p.rubyforge_name}\/?/,''), 'rdoc')
-  p.rsync_args = '-av --delete --ignore-errors'
+Echoe.new('ruby-googlechart', '0.6.1') do |p|
+  p.description     = 'Ruby wrapper around the Google Charts API'
+  p.url             = 'http://github.com/jparker/ruby-googlechart'
+  p.author          = 'John Parker'
+  p.email           = 'jparker@urgetopunt.com'
+  p.ignore_pattern  = %w[tmp/* script/*]
+  # p.development_dependencies = []
 end
 
-require 'newgem/tasks' # load /tasks/*.rake
-
+Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each {|ext| load ext }
