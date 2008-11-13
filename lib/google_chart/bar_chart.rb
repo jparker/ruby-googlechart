@@ -1,5 +1,5 @@
 module GoogleChart
-  class Bar < Base
+  class BarChart < AbstractChart
     include Axis
     include BarStyle
     include Color

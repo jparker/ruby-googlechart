@@ -1,5 +1,5 @@
 module GoogleChart
-  class Line < Base
+  class LineChart < AbstractChart
     @@chart_types = { :line => 'lc', :xy => 'lxy', :sparkline => 'ls' }
     
     include Axis

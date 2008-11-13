@@ -1,5 +1,5 @@
 module GoogleChart
-  class Base
+  class AbstractChart
     @@base_url     = 'http://chart.apis.google.com/chart'
     @@default_size = '600x500'
     

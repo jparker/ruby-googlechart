@@ -13,18 +13,18 @@ require 'google_chart/line_style'
 require 'google_chart/range_marker'
 require 'google_chart/title'
 
-require 'google_chart/base'
-require 'google_chart/bar'
-require 'google_chart/line'
+require 'google_chart/abstract_chart'
+require 'google_chart/bar_chart'
+require 'google_chart/line_chart'
 
 module GoogleChart
   VERSION = '0.5.0'
   
   def self.Line(options = {}, &block)
-    GoogleChart::Line.new(options, &block).to_url
+    GoogleChart::LineChart.new(options, &block).to_url
   end
   
   def self.Bar(options = {}, &block)
-    GoogleChart::Bar.new(options, &block).to_url
+    GoogleChart::BarChart.new(options, &block).to_url
   end
 end
