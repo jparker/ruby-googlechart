@@ -35,7 +35,11 @@ module GoogleChart
     
     def normalize(set, encoding_max)
       min, max = scale.min, scale.max
-      set.map {|e| (e.to_f - min) / (max - min) * encoding_max if e }
+      if min != max
+        set.map {|e| (e.to_f - min) / (max - min) * encoding_max if e }
+      else
+        set
+      end
     end
     
     def simple_encode(data)

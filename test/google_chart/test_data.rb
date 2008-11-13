@@ -29,10 +29,20 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=s:JP,YH\b/, @chart.to_url)
     end
     
-    should 'encode missing data' do
-      @chart.data = [50, nil, 33]
+    should 'encode floating point data' do
+      @chart.data = [49.5, 33.4]
       @chart.scale = 0..61
-      assert_match(/\bchd=s:y_h\b/, @chart.to_url)
+      assert_match(/\bchd=s:yh\b/, @chart.to_url)
+    end
+    
+    should 'encode all zeros with "A"' do
+      @chart.data = [0, 0, 0]
+      assert_match(/\bchd=s:AAA\b/, @chart.to_url)
+    end
+    
+    should 'encode unchanging non-zero data with "9"' do
+      @chart.data = [1, 1, 1]
+      assert_match(/\bchd=s:999\b/, @chart.to_url)
     end
     
     should 'encode out-of-bounds data' do
@@ -41,10 +51,10 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=s:998BAA/, @chart.to_url)
     end
     
-    should 'encode floating point data' do
-      @chart.data = [49.5, 33.4]
+    should 'encode missing data' do
+      @chart.data = [50, nil, 33]
       @chart.scale = 0..61
-      assert_match(/\bchd=s:yh\b/, @chart.to_url)
+      assert_match(/\bchd=s:y_h\b/, @chart.to_url)
     end
   end
   
@@ -68,10 +78,20 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=e:jpyh,JPYH\b/, @chart.to_url)
     end
     
-    should 'encode missing data' do
-      @chart.data = [2281, nil, 3233]
+    should 'encode floating point data' do
+      @chart.data = [2281.49, 3232.50]
       @chart.scale = 0..4095
-      assert_match(/\bchd=e:jp__yh\b/, @chart.to_url)
+      assert_match(/\bchd=e:jpyh\b/, @chart.to_url)
+    end
+    
+    should 'encode all zeros with "AA"' do
+      @chart.data = [0, 0, 0]
+      assert_match(/\bchd=e:AAAAAA\b/, @chart.to_url)
+    end
+    
+    should 'encode unchanging non-zero data with ".."' do
+      @chart.data = [1, 1, 1]
+      assert_match(/\bchd=e:\.{6}/, @chart.to_url)
     end
     
     should 'encode out-of-bounds data' do
@@ -80,10 +100,10 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=e:\.\.\.\.\.-ABAAAA\b/, @chart.to_url)
     end
     
-    should 'encode floating point data' do
-      @chart.data = [2281.49, 3232.50]
+    should 'encode missing data' do
+      @chart.data = [2281, nil, 3233]
       @chart.scale = 0..4095
-      assert_match(/\bchd=e:jpyh\b/, @chart.to_url)
+      assert_match(/\bchd=e:jp__yh\b/, @chart.to_url)
     end
   end
   
@@ -107,10 +127,20 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=t:6,14\|5,23\b/, @chart.to_url)
     end
     
-    should 'encode missing data' do
-      @chart.data = [6, nil, 14]
+    should 'rounds floating point data to the nearest tenth' do
+      @chart.data = [5.95, 14.01, 5.23]
       @chart.scale = 0..100
-      assert_match(/\bchd=t:6,-1,14\b/, @chart.to_url)
+      assert_match(/\bchd=t:6,14,5.2\b/, @chart.to_url)
+    end
+    
+    should 'encode all zeros with "0"' do
+      @chart.data = [0, 0, 0]
+      assert_match(/\bchd=t:0,0,0\b/, @chart.to_url)
+    end
+    
+    should 'encode unchanging non-zero data with "100"' do
+      @chart.data = [1, 1, 1]
+      assert_match(/\bchd=t:100,100,100\b/, @chart.to_url)
     end
     
     should 'encode out-of-bounds data' do
@@ -119,10 +149,10 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=t:100,100,99,1,0,0\b/, @chart.to_url)
     end
     
-    should 'rounds floating point data to the nearest tenth' do
-      @chart.data = [5.95, 14.01, 5.23]
+    should 'encode missing data' do
+      @chart.data = [6, nil, 14]
       @chart.scale = 0..100
-      assert_match(/\bchd=t:6,14,5.2\b/, @chart.to_url)
+      assert_match(/\bchd=t:6,-1,14\b/, @chart.to_url)
     end
   end
 end
