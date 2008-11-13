@@ -11,12 +11,12 @@ module GoogleChart
     alphabet   = ('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a + %w[- .]
     @@extended = alphabet.map {|a| alphabet.map {|b| a + b }}.flatten
     
-    def data
-      'chd=' + send(:"#{encoding}_encode", @data) if @data
-    end
-    
     def data=(data)
       @data = data.any? {|e| Array === e } ? data : [data]
+    end
+    
+    def data
+      'chd=' + send(:"#{encoding}_encode", @data) if @data
     end
     
     private
@@ -24,8 +24,17 @@ module GoogleChart
       @encoding ||= :simple
     end
     
+    def scale
+      if @scale.nil?
+        min = [0, @data.map {|set| set.min }.min].min
+        max = @data.map {|set| set.max }.max
+        @scale = min..max
+      end
+      @scale
+    end
+    
     def normalize(set, encoding_max)
-      min, max = @scale ? [@scale.min, @scale.max] : [0, set.max]
+      min, max = scale.min, scale.max
       set.map {|e| (e.to_f - min) / (max - min) * encoding_max if e }
     end
     

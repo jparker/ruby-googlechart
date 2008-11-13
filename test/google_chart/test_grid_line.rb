@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestGridLines < Test::Unit::TestCase
+class TestGridLine < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::GridLines }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::GridLine }
   end
   
   should 'not display grid lines by default' do

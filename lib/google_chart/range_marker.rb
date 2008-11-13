@@ -1,11 +1,15 @@
 # <URL:http://code.google.com/apis/chart/#hor_line_marker>
 module GoogleChart
-  module RangeMarkers
+  module RangeMarker
     def self.included(klass)
       klass.register!(:ranges)
     end
     
     @@range_marker_orientations = { :h => 'r', :v => 'R' }
+    
+    def ranges=(ranges)
+      @ranges = ranges.any? {|e| e.is_a?(Array) } ? ranges : [ranges]
+    end
     
     def ranges
       unless @ranges.nil? || @ranges.empty?
@@ -17,10 +21,6 @@ module GoogleChart
           r.join(',')
         }.join('|')
       end
-    end
-    
-    def ranges=(ranges)
-      @ranges = ranges.any? {|e| e.is_a?(Array) } ? ranges : [ranges]
     end
   end
 end

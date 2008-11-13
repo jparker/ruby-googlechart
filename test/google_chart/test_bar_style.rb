@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestBarStyles < Test::Unit::TestCase
+class TestBarStyle < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::BarStyles }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::BarStyle }
   end
   
   should 'not display bar style parameter by default' do

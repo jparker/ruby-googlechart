@@ -1,14 +1,13 @@
 module GoogleChart
   class Bar < Base
-    include Axes
-    include BarStyles
-    include Colors
+    include Axis
+    include BarStyle
+    include Color
     include Data
-    include GridLines
-    include Legends
-    include RangeMarkers
-    include Sizes
-    include Titles
+    include GridLine
+    include Legend
+    include RangeMarker
+    include Title
     
     @@orientations = {:horizontal => 'h', :vertical => 'v'}
     @@groupings    = {:grouped    => 'g', :stacked  => 's'}

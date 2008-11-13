@@ -1,6 +1,6 @@
 # <URL:http://code.google.com/apis/chart/#chdl>
 module GoogleChart
-  module Legends
+  module Legend
     def self.included(klass)
       klass.register!(:legend)
     end

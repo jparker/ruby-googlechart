@@ -18,4 +18,12 @@ class TestBase < Test::Unit::TestCase
   should 'begin URLs with Google Charts base URL' do
     assert_match(%r{\Ahttp://chart\.apis\.google\.com/chart\?}, Class.new(MockChart).new.to_url)
   end
+  
+  should 'have a default chart size' do
+    assert_match(/\bchs=600x500\b/, Class.new(MockChart).new.to_url)
+  end
+  
+  should 'accept custom chart sizes' do
+    assert_match(/\bchs=800x375\b/, Class.new(MockChart).new(:size => '800x375').to_url)
+  end
 end

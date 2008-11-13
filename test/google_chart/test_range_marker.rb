@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestRangeMarkers < Test::Unit::TestCase
+class TestRangeMarker < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::RangeMarkers }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::RangeMarker }
   end
   
   should 'not have range markers by default' do

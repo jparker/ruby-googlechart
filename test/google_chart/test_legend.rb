@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestLegends < Test::Unit::TestCase
+class TestLegend < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::Legends }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::Legend }
   end
   
   should 'not display legend by default' do

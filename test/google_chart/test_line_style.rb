@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestLineStyles < Test::Unit::TestCase
+class TestLineStyle < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::LineStyles }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::LineStyle }
   end
   
   should 'not include line styles by default' do

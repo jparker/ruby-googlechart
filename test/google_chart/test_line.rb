@@ -17,39 +17,35 @@ class TestLine < Test::Unit::TestCase
     assert_match(/\bcht=lc\b/, GoogleChart::Line.new(:type => :line).to_url)
   end
   
-  should 'include Axes module' do
-    assert GoogleChart::Axes === GoogleChart::Line.new
+  should 'include Axis module' do
+    assert GoogleChart::Axis === GoogleChart::Line.new
   end
   
-  should 'include Colors module' do
-    assert GoogleChart::Colors === GoogleChart::Line.new
+  should 'include Color module' do
+    assert GoogleChart::Color === GoogleChart::Line.new
   end
   
   should 'include Data module' do
     assert GoogleChart::Data === GoogleChart::Line.new
   end
   
-  should 'include GridLines module' do
-    assert GoogleChart::GridLines === GoogleChart::Line.new
+  should 'include GridLine module' do
+    assert GoogleChart::GridLine === GoogleChart::Line.new
   end
   
-  should 'include Legends module' do
-    assert GoogleChart::Legends === GoogleChart::Line.new
+  should 'include Legend module' do
+    assert GoogleChart::Legend === GoogleChart::Line.new
   end
   
-  should 'include LineStyles module' do
-    assert GoogleChart::LineStyles === GoogleChart::Line.new
+  should 'include LineStyle module' do
+    assert GoogleChart::LineStyle === GoogleChart::Line.new
   end
   
-  should 'include RangeMarkers module' do
-    assert GoogleChart::RangeMarkers === GoogleChart::Line.new
+  should 'include RangeMarker module' do
+    assert GoogleChart::RangeMarker === GoogleChart::Line.new
   end
   
-  should 'include Sizes module' do
-    assert GoogleChart::Sizes === GoogleChart::Line.new
-  end
-  
-  should 'include Titles module' do
-    assert GoogleChart::Titles === GoogleChart::Line.new
+  should 'include Title module' do
+    assert GoogleChart::Title === GoogleChart::Line.new
   end
 end

@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestTitles < Test::Unit::TestCase
+class TestTitle < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::Titles }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::Title }
   end
   
   should 'not have a title by default' do

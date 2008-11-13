@@ -1,6 +1,6 @@
 # <URL:http://code.google.com/apis/chart/#line_bar_pie_colors>
 module GoogleChart
-  module Colors
+  module Color
     def self.included(klass)
       klass.register!(:color)
     end

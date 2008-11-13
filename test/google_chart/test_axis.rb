@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestAxes < Test::Unit::TestCase
+class TestAxis < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::Axes }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::Axis }
   end
   
   should 'not display axis parameter by default' do

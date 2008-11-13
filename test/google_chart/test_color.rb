@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TestColors < Test::Unit::TestCase
+class TestColor < Test::Unit::TestCase
   def setup
-    @klass = Class.new(MockChart).class_eval { include GoogleChart::Colors }
+    @klass = Class.new(MockChart).class_eval { include GoogleChart::Color }
   end
   
   should 'not display color parameter by default' do

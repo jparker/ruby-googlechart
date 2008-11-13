@@ -17,39 +17,35 @@ class TestBar < Test::Unit::TestCase
     assert_match(/\bcht=bhg\b/, GoogleChart::Bar.new(:horizontal => true, :grouped => true).to_url)
   end
   
-  should 'include Axes module' do
-    assert GoogleChart::Axes === GoogleChart::Bar.new
+  should 'include Axis module' do
+    assert GoogleChart::Axis === GoogleChart::Bar.new
   end
   
-  should 'include BarStyles module' do
-    assert GoogleChart::BarStyles === GoogleChart::Bar.new
+  should 'include BarStyle module' do
+    assert GoogleChart::BarStyle === GoogleChart::Bar.new
   end
   
-  should 'include Colors module' do
-    assert GoogleChart::Colors === GoogleChart::Bar.new
+  should 'include Color module' do
+    assert GoogleChart::Color === GoogleChart::Bar.new
   end
   
   should 'include Data module' do
     assert GoogleChart::Data === GoogleChart::Bar.new
   end
   
-  should 'include GridLines module' do
-    assert GoogleChart::GridLines === GoogleChart::Bar.new
+  should 'include GridLine module' do
+    assert GoogleChart::GridLine === GoogleChart::Bar.new
   end
   
-  should 'include Legends module' do
-    assert GoogleChart::Legends === GoogleChart::Bar.new
+  should 'include Legend module' do
+    assert GoogleChart::Legend === GoogleChart::Bar.new
   end
   
-  should 'include RangeMarkers module' do
-    assert GoogleChart::RangeMarkers === GoogleChart::Bar.new
+  should 'include RangeMarker module' do
+    assert GoogleChart::RangeMarker === GoogleChart::Bar.new
   end
   
-  should 'include Sizes module' do
-    assert GoogleChart::Sizes === GoogleChart::Bar.new
-  end
-  
-  should 'include Titles module' do
-    assert GoogleChart::Titles === GoogleChart::Bar.new
+  should 'include Title module' do
+    assert GoogleChart::Title === GoogleChart::Bar.new
   end
 end

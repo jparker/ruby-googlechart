@@ -1,16 +1,28 @@
 module GoogleChart
   class Base
-    @@base_url = 'http://chart.apis.google.com/chart'
+    @@base_url     = 'http://chart.apis.google.com/chart'
+    @@default_size = '600x500'
     
     def initialize(options = {})
       options.each {|key, value| send("#{key}=", value) }
       yield self if block_given?
     end
     
+    def to_url
+      "#{@@base_url}?#{query_string}"
+    end
+    
+    attr_writer :size
+    
+    def size
+      @size ||= @@default_size
+      "chs=#{@size}"
+    end
+    
     def self.inherited(klass)
       klass.class_eval do
         class_variable_set(:@@parameters, [])
-        register!(:chart_type)
+        register!(:chart_type, :size)
       end
     end
     
@@ -26,12 +38,6 @@ module GoogleChart
     
     def self.registry
       class_variable_get :@@parameters
-    end
-    
-    # Collect all of the registered chart parameters and join them together
-    # to form the URL for the chart to be generated.
-    def to_url
-      "#{@@base_url}?#{query_string}"
     end
     
     private
