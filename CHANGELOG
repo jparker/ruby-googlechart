@@ -16,3 +16,7 @@
 
 * Gem cleanup (switched from newgem + hoe to echoe)
 * Fixed data scaling bug with all-zero data
+
+== 0.6.2 2008-11-20
+
+* Fixed axis label encoding to handle +nil+
