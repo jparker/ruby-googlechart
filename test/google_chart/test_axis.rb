@@ -48,6 +48,10 @@ class TestAxis < Test::Unit::TestCase
     should 'escape axis labels for url' do
       assert_match(/\bchxl=0:\|foo\+bar\|baz%7Cfroz\b/, @klass.new(:axes => {:x => ['foo bar', 'baz|froz']}).to_url)
     end
+    
+    should 'convert nil labels to empty strings' do
+      assert_match(/\bchxl=0:\|foo\|\|bar\b/, @klass.new(:axes => {:x => ['foo', nil, 'bar']}).to_url)
+    end
   end
   
   context 'axis ranges' do
