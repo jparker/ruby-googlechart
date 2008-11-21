@@ -20,4 +20,8 @@ class TestLegend < Test::Unit::TestCase
   should 'escape legend text for url' do
     assert_match(/\bchdl=Foo\+Bar%7CBaz\b/, @klass.new(:legend => 'Foo Bar|Baz').to_url)
   end
+  
+  should 'convert non-String legend keys to Strings' do
+    assert_match(/\bchdl=foo\|\|1\b/, @klass.new(:legend => ['foo', nil, 1]).to_url)
+  end
 end

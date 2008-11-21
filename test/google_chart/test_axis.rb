@@ -49,8 +49,8 @@ class TestAxis < Test::Unit::TestCase
       assert_match(/\bchxl=0:\|foo\+bar\|baz%7Cfroz\b/, @klass.new(:axes => {:x => ['foo bar', 'baz|froz']}).to_url)
     end
     
-    should 'convert nil labels to empty strings' do
-      assert_match(/\bchxl=0:\|foo\|\|bar\b/, @klass.new(:axes => {:x => ['foo', nil, 'bar']}).to_url)
+    should 'convert non-String labels to Strings' do
+      assert_match(/\bchxl=0:\|foo\|\|1\b/, @klass.new(:axes => {:x => ['foo', nil, 1]}).to_url)
     end
   end
   

@@ -13,7 +13,7 @@ module GoogleChart
       [:x, :y, :r, :t].each do |axis|
         case axes[axis]
         when Array
-          @axis_labels << ("#{idx}:|" + axes[axis].map {|l| CGI::escape(l) if l }.join('|'))
+          @axis_labels << ("#{idx}:|" + axes[axis].map {|l| CGI::escape(l.to_s) }.join('|'))
           @axes << axis
           idx += 1
         when Range

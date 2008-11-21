@@ -6,7 +6,7 @@ module GoogleChart
     end
     
     def legend=(legend)
-      @legend = [legend].flatten.map {|l| CGI::escape(l) }
+      @legend = [legend].flatten.map {|l| CGI::escape(l.to_s) }
     end
     
     def legend
