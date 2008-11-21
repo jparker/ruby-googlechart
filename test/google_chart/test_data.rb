@@ -17,6 +17,11 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=s:A9p\b/, @chart.to_url)
     end
     
+    should 'encode dataset with nils with auto-scaling' do
+      @chart.data = [0, nil, 61]
+      assert_match(/\bchd=s:A_9\b/, @chart.to_url)
+    end
+    
     should 'encode dataset with manual scaling' do
       @chart.data = [0, 15, 10]
       @chart.scale = 0..20
@@ -66,6 +71,11 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=e:AA\.\.qq\b/, @chart.to_url)
     end
     
+    should 'encode dataset with nils with auto-scaling' do
+      @chart.data = [0, 4095, nil]
+      assert_match(/\bchd=e:AA\.\.__\b/, @chart.to_url)
+    end
+    
     should 'encode dataset with manual scaling' do
       @chart.data = [0, 15, 10]
       @chart.scale = 0..20
@@ -113,6 +123,11 @@ class TestData < Test::Unit::TestCase
     should 'encode dataset with auto-scaling' do
       @chart.data = [0, 15, 10]
       assert_match(/\bchd=t:0,100,66.7\b/, @chart.to_url)
+    end
+    
+    should 'encode dataset with nils with auto-scaling' do
+      @chart.data = [0, 100, nil]
+      assert_match(/\bchd=t:0,100,-1\b/, @chart.to_url)
     end
     
     should 'encode dataset with manual scaling' do

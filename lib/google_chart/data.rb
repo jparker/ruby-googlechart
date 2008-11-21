@@ -26,8 +26,8 @@ module GoogleChart
     
     def scale
       if @scale.nil?
-        min = [0, @data.map {|set| set.min }.min].min
-        max = @data.map {|set| set.max }.max
+        min = [0, @data.map {|set| set.compact.min }.min].compact.min
+        max = @data.map {|set| set.compact.max }.compact.max
         @scale = min..max
       end
       @scale
