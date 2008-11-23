@@ -62,7 +62,7 @@ class TestGoogleChart < Test::Unit::TestCase
       end
       
       should 'include chart type parameter' do
-        assert_match(/\bcht=bvs\b/, @url)
+        assert_match(/\bcht=bvg\b/, @url)
       end
       
       should 'include chart size parameter' do
@@ -88,7 +88,7 @@ class TestGoogleChart < Test::Unit::TestCase
       end
       
       should 'include chart type parameter' do
-        assert_match(/\bcht=bvs\b/, @url)
+        assert_match(/\bcht=bvg\b/, @url)
       end
       
       should 'include chart size parameter' do

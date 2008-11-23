@@ -21,12 +21,24 @@ class TestData < Test::Unit::TestCase
     assert_nothing_raised(ArgumentError) { @klass.new(:data => [[nil, nil], [nil, 1]]) }
   end
   
-  should 'be able to auto-scale datasets with nils' do
+  should 'auto-scale between 0 and maximum value among all data sets' do
+    assert_match(/\bchd=s:67,89\b/, @klass.new(:data => [[58, 59], [60, 61]]).to_url)
+  end
+  
+  should 'be able to auto-scale data sets with nils' do
     assert_match(/\bchd=s:A_9\b/, @klass.new(:data => [0, nil, 100]).to_url)
   end
   
-  should 'be able to auto-scale datasets with an empty dataset' do
+  should 'be able to auto-scale data sets with one empty set' do
     assert_match(/\bchd=s:__,A9\b/, @klass.new(:data => [[nil, nil], [0, 100]]).to_url)
+  end
+  
+  should 'encode data with high-pass filter when auto-scaling' do
+    assert_match(/\bchd=s:AAB89\b/, @klass.new(:data => [-1, 0, 1, 60, 61]).to_url)
+  end
+  
+  should 'encode data with band-pass filter when manual-scaling' do
+    assert_match(/\bchd=s:AB899\b/, @klass.new(:data => [-5, -1, 99, 100, 102], :scale => -3..100).to_url)
   end
   
   context 'simple encoding' do
@@ -34,13 +46,13 @@ class TestData < Test::Unit::TestCase
     
     should 'encode dataset with auto-scaling' do
       @chart.data = [0, 15, 10]
-      assert_match(/\bchd=s:A9p\b/, @chart.to_url)
+      assert_match(/\bchd=s:A9o\b/, @chart.to_url)
     end
     
     should 'encode dataset with manual scaling' do
       @chart.data = [0, 15, 10]
       @chart.scale = 0..20
-      assert_match(/\bchd=s:Auf\b/, @chart.to_url)
+      assert_match(/\bchd=s:Ate\b/, @chart.to_url)
     end
     
     should 'encode multiple datasets' do
@@ -50,25 +62,9 @@ class TestData < Test::Unit::TestCase
     end
     
     should 'encode floating point data' do
-      @chart.data = [49.5, 33.4]
+      @chart.data = [50.5, 33.4]
       @chart.scale = 0..61
       assert_match(/\bchd=s:yh\b/, @chart.to_url)
-    end
-    
-    should 'encode all zeros with "A"' do
-      @chart.data = [0, 0, 0]
-      assert_match(/\bchd=s:AAA\b/, @chart.to_url)
-    end
-    
-    should 'encode unchanging non-zero data with max encoding value' do
-      @chart.data = [1, 1, 1]
-      assert_match(/\bchd=s:999\b/, @chart.to_url)
-    end
-    
-    should 'encode out-of-bounds data' do
-      @chart.data = [62, 61, 60, 1, 0, -1]
-      @chart.scale = 0..61
-      assert_match(/\bchd=s:998BAA/, @chart.to_url)
     end
     
     should 'encode missing data' do
@@ -87,9 +83,9 @@ class TestData < Test::Unit::TestCase
     end
     
     should 'encode dataset with manual scaling' do
-      @chart.data = [0, 15, 10]
+      @chart.data = [15, 10, 0]
       @chart.scale = 0..20
-      assert_match(/\bchd=e:AAv\.gA\b/, @chart.to_url)
+      assert_match(/\bchd=e:v\.f\.AA\b/, @chart.to_url)
     end
     
     should 'encode multiple datasets' do
@@ -99,25 +95,9 @@ class TestData < Test::Unit::TestCase
     end
     
     should 'encode floating point data' do
-      @chart.data = [2281.49, 3232.50]
+      @chart.data = [2281.49, 3233.50]
       @chart.scale = 0..4095
       assert_match(/\bchd=e:jpyh\b/, @chart.to_url)
-    end
-    
-    should 'encode all zeros with "AA"' do
-      @chart.data = [0, 0, 0]
-      assert_match(/\bchd=e:AAAAAA\b/, @chart.to_url)
-    end
-    
-    should 'encode unchanging non-zero data with max encoding value' do
-      @chart.data = [1, 1, 1]
-      assert_match(/\bchd=e:\.{6}/, @chart.to_url)
-    end
-    
-    should 'encode out-of-bounds data' do
-      @chart.data = [4096, 4095, 4094, 1, 0, -1]
-      @chart.scale = 0..4095
-      assert_match(/\bchd=e:\.\.\.\.\.-ABAAAA\b/, @chart.to_url)
     end
     
     should 'encode missing data' do
@@ -151,22 +131,6 @@ class TestData < Test::Unit::TestCase
       @chart.data = [5.95, 14.01, 5.23]
       @chart.scale = 0..100
       assert_match(/\bchd=t:6,14,5.2\b/, @chart.to_url)
-    end
-    
-    should 'encode all zeros with "0"' do
-      @chart.data = [0, 0, 0]
-      assert_match(/\bchd=t:0,0,0\b/, @chart.to_url)
-    end
-    
-    should 'encode unchanging non-zero data with max encoding value' do
-      @chart.data = [1, 1, 1]
-      assert_match(/\bchd=t:100,100,100\b/, @chart.to_url)
-    end
-    
-    should 'encode out-of-bounds data' do
-      @chart.data = [101, 100, 99, 1, 0, -1]
-      @chart.scale = 0..100
-      assert_match(/\bchd=t:100,100,99,1,0,0\b/, @chart.to_url)
     end
     
     should 'encode missing data' do

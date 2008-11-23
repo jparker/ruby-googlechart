@@ -3,6 +3,8 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 require 'cgi'
 
+require 'array'
+
 require 'google_chart/axis'
 require 'google_chart/bar_style'
 require 'google_chart/color'

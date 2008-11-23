@@ -19,7 +19,8 @@ module GoogleChart
     end
     
     def data
-      'chd=' + send(:"#{encoding}_encode", @data) if @data
+      set_scale
+      'chd=' + send(:"#{encoding}_encode", reduce(@data)) if @data
     end
     
     private
@@ -27,17 +28,22 @@ module GoogleChart
       @encoding ||= :simple
     end
     
-    def scale
-      if @scale.nil?
-        min = [0, @data.map {|set| set.compact.min }.compact.min].min
+    def set_scale
+      if @scale.nil? && !@data.nil?
+        min = @data.map {|set| set.compact.min }.compact.min
+        min = 0 if min > 0
         max = @data.map {|set| set.compact.max }.compact.max
         @scale = min..max
       end
       @scale
     end
     
+    def reduce(data)
+      data
+    end
+    
     def normalize(set, encoding_max)
-      min, max = scale.first, scale.last
+      min, max = @scale.first, @scale.last
       if min != max
         set.map {|e| (e.to_f - min) / (max - min) * encoding_max if e }
       else
@@ -52,7 +58,7 @@ module GoogleChart
           when e.nil? then '_'
           when e <= 0 then @@simple[0]
           when e >= @@simple.size then @@simple[-1]
-          else @@simple[e.round]
+          else @@simple[e.floor]
           end
         }.join
       }.join(',')
@@ -65,7 +71,7 @@ module GoogleChart
           when e.nil? then '__'
           when e <= 0 then @@extended[0]
           when e >= @@extended.size then @@extended[-1]
-          else @@extended[e.round]
+          else @@extended[e.floor]
           end
         }.join
       }.join(',')
