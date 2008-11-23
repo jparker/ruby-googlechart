@@ -2,15 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ruby-googlechart}
-  s.version = "0.6.2"
+  s.version = "0.6.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["John Parker"]
-  s.date = %q{2008-11-12}
+  s.date = %q{2008-11-23}
   s.description = %q{Ruby wrapper around the Google Charts API}
   s.email = %q{jparker@urgetopunt.com}
-  s.extra_rdoc_files = ["CHANGELOG", "lib/google_chart/abstract_chart.rb", "lib/google_chart/axis.rb", "lib/google_chart/bar_chart.rb", "lib/google_chart/bar_style.rb", "lib/google_chart/color.rb", "lib/google_chart/data.rb", "lib/google_chart/grid_line.rb", "lib/google_chart/legend.rb", "lib/google_chart/line_chart.rb", "lib/google_chart/line_style.rb", "lib/google_chart/range_marker.rb", "lib/google_chart/title.rb", "lib/google_chart.rb", "README.rdoc"]
-  s.files = ["CHANGELOG", "lib/google_chart/abstract_chart.rb", "lib/google_chart/axis.rb", "lib/google_chart/bar_chart.rb", "lib/google_chart/bar_style.rb", "lib/google_chart/color.rb", "lib/google_chart/data.rb", "lib/google_chart/grid_line.rb", "lib/google_chart/legend.rb", "lib/google_chart/line_chart.rb", "lib/google_chart/line_style.rb", "lib/google_chart/range_marker.rb", "lib/google_chart/title.rb", "lib/google_chart.rb", "Manifest", "Rakefile", "README.rdoc", "ruby-googlechart.gemspec", "test/google_chart/test_abstract_chart.rb", "test/google_chart/test_axis.rb", "test/google_chart/test_bar_chart.rb", "test/google_chart/test_bar_style.rb", "test/google_chart/test_color.rb", "test/google_chart/test_data.rb", "test/google_chart/test_grid_line.rb", "test/google_chart/test_legend.rb", "test/google_chart/test_line_chart.rb", "test/google_chart/test_line_style.rb", "test/google_chart/test_range_marker.rb", "test/google_chart/test_title.rb", "test/test_google_chart.rb", "test/test_helper.rb"]
+  s.extra_rdoc_files = ["CHANGELOG", "lib/array.rb", "lib/google_chart/abstract_chart.rb", "lib/google_chart/axis.rb", "lib/google_chart/bar_chart.rb", "lib/google_chart/bar_style.rb", "lib/google_chart/color.rb", "lib/google_chart/data.rb", "lib/google_chart/grid_line.rb", "lib/google_chart/legend.rb", "lib/google_chart/line_chart.rb", "lib/google_chart/line_style.rb", "lib/google_chart/range_marker.rb", "lib/google_chart/title.rb", "lib/google_chart.rb", "README.rdoc"]
+  s.files = ["CHANGELOG", "lib/array.rb", "lib/google_chart/abstract_chart.rb", "lib/google_chart/axis.rb", "lib/google_chart/bar_chart.rb", "lib/google_chart/bar_style.rb", "lib/google_chart/color.rb", "lib/google_chart/data.rb", "lib/google_chart/grid_line.rb", "lib/google_chart/legend.rb", "lib/google_chart/line_chart.rb", "lib/google_chart/line_style.rb", "lib/google_chart/range_marker.rb", "lib/google_chart/title.rb", "lib/google_chart.rb", "Manifest", "Rakefile", "README.rdoc", "ruby-googlechart.gemspec", "test/google_chart/test_abstract_chart.rb", "test/google_chart/test_axis.rb", "test/google_chart/test_bar_chart.rb", "test/google_chart/test_bar_style.rb", "test/google_chart/test_color.rb", "test/google_chart/test_data.rb", "test/google_chart/test_grid_line.rb", "test/google_chart/test_legend.rb", "test/google_chart/test_line_chart.rb", "test/google_chart/test_line_style.rb", "test/google_chart/test_range_marker.rb", "test/google_chart/test_title.rb", "test/test_google_chart.rb", "test/test_helper.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/jparker/ruby-googlechart}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Ruby-googlechart", "--main", "README.rdoc"]

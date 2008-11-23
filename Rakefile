@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 
-Echoe.new('ruby-googlechart', '0.6.1') do |p|
+Echoe.new('ruby-googlechart', '0.6.3') do |p|
   p.description     = 'Ruby wrapper around the Google Charts API'
   p.url             = 'http://github.com/jparker/ruby-googlechart'
   p.author          = 'John Parker'
