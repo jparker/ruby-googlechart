@@ -13,6 +13,9 @@ module GoogleChart
     
     def data=(data)
       @data = data.any? {|e| Array === e } ? data : [data]
+      if @data.all? {|set| set.compact.empty? }
+        raise ArgumentError, 'data must contain at least 1 non-nil value'
+      end
     end
     
     def data
@@ -26,7 +29,7 @@ module GoogleChart
     
     def scale
       if @scale.nil?
-        min = [0, @data.map {|set| set.compact.min }.min].compact.min
+        min = [0, @data.map {|set| set.compact.min }.compact.min].min
         max = @data.map {|set| set.compact.max }.compact.max
         @scale = min..max
       end

@@ -9,17 +9,32 @@ class TestData < Test::Unit::TestCase
     assert_match(/\bchd=s:AB89\b/, @klass.new(:data => [0, 1, 60, 61]).to_url)
   end
   
+  should 'raise an ArgumentError if data set is empty' do
+    assert_raise(ArgumentError, /1 non-nil value/) { @klass.new(:data => []) }
+  end
+  
+  should 'raise an ArgumentError if data set contains only nils' do
+    assert_raise(ArgumentError, /1 non-nil value/) { @klass.new(:data => [nil, nil]) }
+  end
+  
+  should 'not raise an ArgumentError if only one of many data sets contains only nils' do
+    assert_nothing_raised(ArgumentError) { @klass.new(:data => [[nil, nil], [nil, 1]]) }
+  end
+  
+  should 'be able to auto-scale datasets with nils' do
+    assert_match(/\bchd=s:A_9\b/, @klass.new(:data => [0, nil, 100]).to_url)
+  end
+  
+  should 'be able to auto-scale datasets with an empty dataset' do
+    assert_match(/\bchd=s:__,A9\b/, @klass.new(:data => [[nil, nil], [0, 100]]).to_url)
+  end
+  
   context 'simple encoding' do
     setup { @chart = @klass.new(:encoding => :simple) }
     
     should 'encode dataset with auto-scaling' do
       @chart.data = [0, 15, 10]
       assert_match(/\bchd=s:A9p\b/, @chart.to_url)
-    end
-    
-    should 'encode dataset with nils with auto-scaling' do
-      @chart.data = [0, nil, 61]
-      assert_match(/\bchd=s:A_9\b/, @chart.to_url)
     end
     
     should 'encode dataset with manual scaling' do
@@ -45,7 +60,7 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=s:AAA\b/, @chart.to_url)
     end
     
-    should 'encode unchanging non-zero data with "9"' do
+    should 'encode unchanging non-zero data with max encoding value' do
       @chart.data = [1, 1, 1]
       assert_match(/\bchd=s:999\b/, @chart.to_url)
     end
@@ -71,11 +86,6 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=e:AA\.\.qq\b/, @chart.to_url)
     end
     
-    should 'encode dataset with nils with auto-scaling' do
-      @chart.data = [0, 4095, nil]
-      assert_match(/\bchd=e:AA\.\.__\b/, @chart.to_url)
-    end
-    
     should 'encode dataset with manual scaling' do
       @chart.data = [0, 15, 10]
       @chart.scale = 0..20
@@ -99,7 +109,7 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=e:AAAAAA\b/, @chart.to_url)
     end
     
-    should 'encode unchanging non-zero data with ".."' do
+    should 'encode unchanging non-zero data with max encoding value' do
       @chart.data = [1, 1, 1]
       assert_match(/\bchd=e:\.{6}/, @chart.to_url)
     end
@@ -125,11 +135,6 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=t:0,100,66.7\b/, @chart.to_url)
     end
     
-    should 'encode dataset with nils with auto-scaling' do
-      @chart.data = [0, 100, nil]
-      assert_match(/\bchd=t:0,100,-1\b/, @chart.to_url)
-    end
-    
     should 'encode dataset with manual scaling' do
       @chart.data = [0, 15, 10]
       @chart.scale = 0..20
@@ -153,7 +158,7 @@ class TestData < Test::Unit::TestCase
       assert_match(/\bchd=t:0,0,0\b/, @chart.to_url)
     end
     
-    should 'encode unchanging non-zero data with "100"' do
+    should 'encode unchanging non-zero data with max encoding value' do
       @chart.data = [1, 1, 1]
       assert_match(/\bchd=t:100,100,100\b/, @chart.to_url)
     end
